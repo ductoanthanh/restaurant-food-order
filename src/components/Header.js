@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // if a component just receive data from props and return JSX => stateless functional component
 const Header = (props) => (
@@ -15,6 +16,9 @@ const Header = (props) => (
             </header>
 );
 
+Header.propTypes = {
+    tagline: PropTypes.string.isRequired
+};
 // class Header extends React.Component {
 //     render() {
 //         return (
