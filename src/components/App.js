@@ -52,6 +52,12 @@ class App extends React.Component {
         fishes[key] = updatedFish;
         //set to state
         this.setState({fishes});
+    };
+
+    deleteFish = (key) => {
+        const fishes = {...this.state.fishes};
+        fishes[key] = null;
+        this.setState({fishes});
     }
 
     loadSampleFishes = () => {
@@ -71,6 +77,12 @@ class App extends React.Component {
         });
     };
 
+    removeFromOrder = (key) => {
+        const order = {...this.state.order};
+        delete order[key]; //not mirror from Firebase
+        this.setState({order});
+    }
+
     render(){
         return (
             <div className="catch-of-the-day">
@@ -81,10 +93,11 @@ class App extends React.Component {
                              <Fish key={key} index={key} details={this.state.fishes[key]} addToOrder={this.addToOrder} />))}
                     </ul>
                 </div>
-                <Order fishes={this.state.fishes} order={this.state.order}/>
+                <Order fishes={this.state.fishes} order={this.state.order} removeFromOrder={this.removeFromOrder}/>
                 <Inventory 
                     addFish={this.addFish}
                     updateFish={this.updateFish}
+                    deleteFish={this.deleteFish}
                     loadSampleFishes={this.loadSampleFishes}
                     fishes={this.state.fishes} 
                     />
